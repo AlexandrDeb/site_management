@@ -1,0 +1,50 @@
+<div class="bs-decs-section">
+    <div class="well"> 
+<?php 
+$form->setAttribute('action', $this->url('admin/customer', array('action' => 'edit', 'id' => $id)));
+$form->prepare();
+echo $this->form()->openTag($form); ?>
+    <fieldset><legend>Редактирование данных пользователя</legend>
+    <?php foreach ($form as $element) { ?>
+        <div class="form-group">
+        <?php $attributes = $element->getAttributes();
+        $label = '';
+        if ($element->getLabel()) {
+            $element->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+            $label = $element->getLabel();
+                if (isset($attributes['required'])) {
+                    $label .= '&nbsp; *';
+                }
+            $label = "<label class='col-ls-2 control-label'>{$label}</label>";
+        }
+        $type = isset($attributes['type']) ? $attributes['type'] : '';
+        $formElement = '';
+        switch($type){
+            case 'text': 
+                $formElement = $this->formInput($element);
+                break;
+            case 'textarea': 
+                $formElement = $this->formTextArea($element);
+                break;
+            case 'select': 
+                $formElement = $this->formSelect($element);
+                break;
+            case 'date': 
+                $formElement = $this->formDate($element);
+                break;
+            case 'file':
+                $formElement = $this->formFile($element);
+                break;
+            default: 
+                $formElement = $this->formRow($element);
+                $label = '';
+                break;
+        } ?>
+            
+        <?php echo $label; ?><div class='col-lg-10'><?php echo $formElement; ?></div>
+        </div>
+    <?php } ?>
+    </fieldset>
+<?php echo $this->form()->closeTag(); ?>
+    </div>
+</div>

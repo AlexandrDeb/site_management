@@ -1,0 +1,25 @@
+<div class="bs-decs-section">
+    <div class="well">
+<?php 
+$form->setAttribute('action', $this->url('admin/category', array('action' => 'edit', 'id' => $id)));
+$form->prepare();
+echo $this->form()->openTag($form); ?>
+    <fieldset><legend>Редактирование категории</legend>
+    <?php foreach ($form as $element) { ?>
+        <div class="form-group">
+        <?php $attributes = $element->getAttributes();
+        $label = '';
+        if ($element->getLabel()) {
+            $element->setLabelAttributes(array('class' => 'col-lg-2 control-label'));
+            $label = $element->getLabel();
+            $label .= '&nbsp; *';
+            $label = "<label class='col-ls-2 control-label'>{$label}</label>";
+        }
+        $formElement = $this->formInput($element); ?>
+        <?php echo $label; ?><div class='col-lg-10'><?php echo $formElement; ?></div>
+        </div>
+    <?php } ?>
+    </fieldset>
+<?php echo $this->form()->closeTag(); ?>
+    </div>
+</div>

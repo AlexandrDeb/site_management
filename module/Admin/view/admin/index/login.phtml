@@ -1,0 +1,30 @@
+<?php 
+$user = $this->identity();
+
+if(empty($user)){
+    $form = $this->form;
+    $form->prepare();
+    
+    echo $this->form()->openTag($form);
+    echo $this->formRow($form->get('login'));
+    echo $this->formRow($form->get('password'));
+    echo $this->formSubmit($form->get('submit'));
+    echo $this->form()->closeTag();
+    
+    echo 'Вход не выполнен';
+} else { 
+    $av = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $user->getId();
+    if (!file_exists($av)) {
+        $av = '/upload/default';
+    } else {
+        $av = '/upload/' . $user->getId();
+    }
+?>
+    <div class="image-box">
+        <img src="<?php echo $av; ?>"/> 
+    </div>
+    <?php echo 'Авторизован как ' . $this->escapeHtml($user->getLogin()); ?>
+    <br><a href="<?php echo $this->url('admin/default', array('controller' => 'index', 'action' => 'logout'));?>"><?php echo "Выход"; ?></a>
+    <hr>
+    <br><div class="nav navbar-nav"><?php echo $this->navigation('admin_navigation')->menu()->setUlClass('nav navbar-nav'); ?></div>
+<?php } ?>
