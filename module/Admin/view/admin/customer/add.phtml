@@ -33,7 +33,7 @@ echo $this->form()->openTag($form); ?>
                 $formElement = $this->formDate($element);
                 break;
             case 'file':
-                $formElement = $this->formSelect($element);
+                $formElement = $this->formFile($element);
                 break;
             default:
                 $formElement = $this->formRow($element);

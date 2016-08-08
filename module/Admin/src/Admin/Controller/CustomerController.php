@@ -147,13 +147,13 @@ class CustomerController extends BaseController
              ->addMessage($message);
         return $this->redirect()->toRoute('admin/customer');
     }
-    
+
     public function uploadAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         $form = new UploadForm('upload-form');
         $request = $this->getRequest();
-        
+
         if ($request->isPost()) {
             $post = array_merge_recursive(
                 $request->getPost()->toArray(),

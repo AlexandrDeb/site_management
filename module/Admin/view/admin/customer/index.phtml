@@ -49,7 +49,7 @@ if ($order_by == 'login') {
         if ($category) {
             $categoryName = $category->getCategoryName();
         } else {
-            $catName = '';
+            $categoryName = '';
         }
         $avatar = $_SERVER['DOCUMENT_ROOT'] . '/upload/' . $item->getId();
         if (!file_exists($avatar)) {
@@ -75,7 +75,7 @@ if ($order_by == 'login') {
                    onclick="if (confirm('Удалить пользователя?')) { document.location = this.href; } return false;
                    ">Удалить</a>
                 <a href="<?php echo $this->url('admin/customer', array(
-                                            'action' => 'upload', 
+                                            'action' => 'upload',
                                             'id' => $item->getId())
                                             ); ?>">Загрузить</a>
             </td>
